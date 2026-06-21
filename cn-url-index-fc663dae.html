@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简明访问指南 · cn-url-lottery 知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f2f4f6;
+            color: #1e2a3a;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        /* hero 区 */
+        .hero {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.5rem 2.2rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #334155;
+            max-width: 680px;
+        }
+        .hero .tagline {
+            display: inline-block;
+            background: #e9edf5;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #1e3a5f;
+            margin-bottom: 1.2rem;
+            border: 1px solid #d6dee9;
+        }
+        /* 卡片通用 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 2rem;
+            border: 1px solid #e0e6ed;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        }
+        .card h2 {
+            font-size: 1.35rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #eef2f6;
+            color: #0f172a;
+        }
+        .card ul, .card p {
+            font-size: 0.98rem;
+            color: #1e2a3a;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+        .card ul li {
+            padding: 0.3rem 0 0.3rem 1.4rem;
+            position: relative;
+        }
+        .card ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #5e6e85;
+            font-weight: bold;
+        }
+        .card .highlight-box {
+            background: #f5f7fa;
+            border-left: 4px solid #94a3b8;
+            padding: 0.9rem 1.2rem;
+            border-radius: 8px;
+            margin: 1rem 0 0.2rem;
+            font-size: 0.95rem;
+        }
+        .card .highlight-box strong {
+            color: #1e293b;
+        }
+        /* 全宽卡片 */
+        .card-full {
+            grid-column: 1 / -1;
+        }
+        .card-full p {
+            max-width: 800px;
+        }
+        /* 小提示 / 信息区 */
+        .info-note {
+            background: #fafbfc;
+            border: 1px solid #dde3ea;
+            border-radius: 18px;
+            padding: 1.4rem 1.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+        }
+        .info-note .icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .info-note p {
+            font-size: 0.95rem;
+            color: #1f2a3c;
+        }
+        .info-note a {
+            color: #1f4b8a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #b7c5d9;
+        }
+        .info-note a:hover {
+            text-decoration-color: #1f4b8a;
+        }
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #dee4ec;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item .q {
+            font-weight: 500;
+            color: #0b1e32;
+        }
+        .faq-item .a {
+            font-size: 0.93rem;
+            color: #374151;
+            margin-top: 0.15rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 680px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .hero {
+                padding: 1.8rem 1.4rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .info-note {
+                flex-direction: column;
+            }
+        }
+
+        /* 链接相关：符合要求 */
+        .link-inline a {
+            color: #1f4b8a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #bcc9db;
+            font-weight: 450;
+        }
+        .link-inline a:hover {
+            text-decoration-color: #1f4b8a;
+        }
+        .link-only a {
+            color: #1e3a5f;
+            text-decoration: underline;
+            font-weight: 450;
+            text-underline-offset: 2px;
+        }
+        .link-only a:hover {
+            color: #0b2c4a;
+        }
+        .btn {
+            display: inline-block;
+            background: #eef2f7;
+            border: 1px solid #cdd7e3;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #1e2a3a;
+            transition: background 0.15s;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: #e2e8f0;
+        }
+        hr {
+            margin: 1.8rem 0 0.5rem;
+            border: none;
+            border-top: 1px solid #dee5ed;
+        }
+        .footer-text {
+            font-size: 0.85rem;
+            color: #5f6e80;
+            text-align: center;
+            padding: 0.8rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- hero 简明指南 -->
+    <div class="hero">
+        <span class="tagline">📘 知识库 · 访问指引</span>
+        <h1>关于 lottery 的简明指南</h1>
+        <p>这里汇集了与 <a href="https://cn-url-lottery.com" style="color:#1f4b8a;text-decoration:underline;text-underline-offset:2px;">lottery</a> 相关的结构说明、使用提醒与常见问题摘要。页面旨在帮助你快速了解其定位与基本逻辑。</p>
+    </div>
+
+    <!-- 卡片网格：说明区 + 提示区 -->
+    <div class="card-grid">
+
+        <!-- 卡片：基本说明 -->
+        <div class="card">
+            <h2>📌 说明区</h2>
+            <p><strong>lottery</strong> 是一个面向网址访问与随机逻辑的轻量服务。其核心概念围绕「基于链接的抽取机制」展开，适用于以下场景：</p>
+            <ul>
+                <li>链接轮播与随机跳转</li>
+                <li>权重分配与简易抽选</li>
+                <li>访问路径的轻量决策</li>
+                <li>自定义规则的测试环境</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>原则：</strong> 所有操作均基于公开的链接参数，不涉及个人隐私收集，也不提供任何形式的资金或实物奖励。
+            </div>
+        </div>
+
+        <!-- 卡片：提示区 -->
+        <div class="card">
+            <h2>⚡ 提示区</h2>
+            <p>使用前建议留意以下几点：</p>
+            <ul>
+                <li>确保链接格式正确，避免特殊符号被转义</li>
+                <li>部分环境可能对重定向次数有限制</li>
+                <li>测试时建议使用无痕窗口或清除缓存</li>
+                <li>若需记录结果，请自行保存页面反馈</li>
+            </ul>
+            <p style="margin-top: 0.8rem;">如需深入理解配置方式，可参考页面内相关说明。</p>
+        </div>
+
+        <!-- 卡片：相关信息区 (全宽) -->
+        <div class="card card-full">
+            <h2>📄 相关信息区</h2>
+            <p style="margin-bottom:0.6rem;">该服务的运行依赖标准的 HTTP 重定向与前端随机逻辑，不依赖第三方插件。以下为一些补充信息：</p>
+            <div style="display:flex; flex-wrap:wrap; gap:1.2rem; margin-top:0.4rem;">
+                <div style="background:#f6f9fc; padding:0.6rem 1.2rem; border-radius:30px; border:1px solid #dee7f0; font-size:0.9rem;">🔹 基于 URL 参数分配权重</div>
+                <div style="background:#f6f9fc; padding:0.6rem 1.2rem; border-radius:30px; border:1px solid #dee7f0; font-size:0.9rem;">🔹 支持自定义概率区间</div>
+                <div style="background:#f6f9fc; padding:0.6rem 1.2rem; border-radius:30px; border:1px solid #dee7f0; font-size:0.9rem;">🔹 无持久化存储</div>
+                <div style="background:#f6f9fc; padding:0.6rem 1.2rem; border-radius:30px; border:1px solid #dee7f0; font-size:0.9rem;">🔹 每次请求独立计算</div>
+            </div>
+            <p style="margin-top:1rem; font-size:0.95rem;">更多技术细节请直接查阅对应文档，或通过 <a href="https://cn-url-lottery.com" class="link-only" style="text-decoration:underline;">lottery</a> 页面体验基础流程。</p>
+        </div>
+    </div>
+
+    <!-- 提示区（独立窄条） -->
+    <div class="info-note">
+        <span class="icon">💡</span>
+        <p><strong>访问提醒：</strong> 如果你第一次接触 <a href="https://cn-url-lottery.com">lottery</a>，建议先理解参数规则，再逐步调整配置。所有反馈均为即时生成，不保留历史记录。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div style="background:#ffffff; border-radius:20px; padding:1.8rem 2rem; border:1px solid #e0e6ed; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+        <h2 style="font-size:1.35rem; font-weight:500; margin-bottom:1rem; color:#0f172a;">❓ FAQ 摘要</h2>
+        <div class="faq-item">
+            <div class="q">Q：是否需要注册或登录？</div>
+            <div class="a">不需要。该服务完全基于链接访问，无用户系统。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q：是否支持自定义种子或随机因子？</div>
+            <div class="a">部分参数可调整，具体请参考 URL 中的 query 字段说明。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q：同一链接重复访问结果会一样吗？</div>
+            <div class="a">不一定。默认每次请求独立计算，若需复现请使用固定种子参数。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q：是否有访问频率限制？</div>
+            <div class="a">未设置明确限制，但过于频繁的请求可能被浏览器或网络环境拦截。</div>
+        </div>
+        <div style="margin-top:1rem; font-size:0.95rem; color:#2d3f57;">
+            📎 更多问答可参考 <a href="https://cn-url-lottery.com" style="color:#1f4b8a;text-decoration:underline;text-underline-offset:2px;">lottery</a> 页面底部的说明区域。
+        </div>
+    </div>
+
+    <!-- 额外的链接卡片（自然嵌入） -->
+    <div style="display:flex; flex-wrap:wrap; gap:0.7rem; justify-content:center; margin-top:0.4rem;">
+        <span style="background:#f4f7fb; padding:0.3rem 1.2rem; border-radius:30px; border:1px solid #d9e1ec; font-size:0.9rem; color:#1f2a3d;">🔗 直接使用 <a href="https://cn-url-lottery.com" style="color:#1f4b8a;text-decoration:underline;">lottery</a> 进行测试</span>
+        <span style="background:#f4f7fb; padding:0.3rem 1.2rem; border-radius:30px; border:1px solid #d9e1ec; font-size:0.9rem; color:#1f2a3d;">📋 或参考上述卡片中的参数建议</span>
+    </div>
+
+    <hr>
+    <div class="footer-text">
+        页面内容仅供参考，不构成任何保证。lottery 相关功能以实际页面表现为准。
+    </div>
+</div>
+</body>
+</html>
